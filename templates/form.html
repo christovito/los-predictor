@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>LOS Predictor</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans">
+</head>
+<style>
+    body {
+        font-family: "Open Sans";
+        margin: 0px;
+    }
+</style>
+
+<body>
+    <div class="bg-white" style="padding-left:12.5rem; padding-right:12.5rem; padding-top:5rem">
+        <h5><b>Please input the form below!</b></h5>
+        <form action="{{url_for('predict')}}" method="post">
+            <div>
+                <label class="my-1 mr-2" for="age">Age Group</label>
+                <select class="custom-select my-1 mr-sm-2" name="age" placeholder="Choose Age Group">
+                    <option selected disabled>Choose Age Group</option>
+                    <option value="0">0 to 17</option>
+                    <option value="1">18 to 29</option>
+                    <option value="2">30 to 49</option>
+                    <option value="3">50 to 69</option>
+                    <option value="4">70 or Older</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="my-1 mr-2" for="gender">Gender</label>
+                <select class="custom-select my-1 mr-sm-2" name="gender" placeholder="Choose Gender">
+                    <option selected disabled>Choose Gender</option>
+                    <option value="0">Female</option>
+                    <option value="1">Male</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="my-1 mr-2" for="race">Race</label>
+                <select class="custom-select my-1 mr-sm-2" name="race" placeholder="Choose Race">
+                    <option selected disabled>Choose Race</option>
+                    <option value="3">White</option>
+                    <option value="0">Black/African American</option>
+                    <option value="1">Multi-racial</option>
+                    <option value="2">Other Race</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="my-1 mr-2" for="ethnicity">Ethnicity</label>
+                <select class="custom-select my-1 mr-sm-2" name="ethnicity" placeholder="Choose Ethnicity">
+                    <option selected disabled>Choose Ethnicity</option>
+                    <option value="2">Spanish/Hispanic</option>
+                    <option value="1">Not Spanish/Hispanic</option>
+                    <option value="0">Multi-ethnic</option>
+                    <option value="3">Unknown</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="my-1 mr-2" for="toa">Type of Admission</label>
+                <select class="custom-select my-1 mr-sm-2" name="toa" placeholder="Choose Type of Admission">
+                    <option selected disabled>Choose Type of Admission</option>
+                    <option value="5">Urgent</option>
+                    <option value="1">Emergency</option>
+                    <option value="4">Trauma</option>
+                    <option value="2">Newborn</option>
+                    <option value="0">Elective</option>
+                    <option value="3">Not Available</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="my-1 mr-2" for="pd">Patient Disposition</label>
+                <select class="custom-select my-1 mr-sm-2" name="pd" placeholder="Choose Patient Disposition">
+                    <option selected disabled>Choose Patient Disposition</option>
+                    <option value="0">Another Type Not Listed</option>
+                    <option value="1">Cancer Center or Children's Hospital</option>
+                    <option value="2">Court/Law Enforcement</option>
+                    <option value="3">Critical Access Hospital</option>
+                    <option value="4">Expired</option>
+                    <option value="5">Facility w/ Custodial/Supportive Care</option>
+                    <option value="6">Federal Health Care Facility</option>
+                    <option value="7">Home or Self Care</option>
+                    <option value="8">Home w/ Home Health Services</option>
+                    <option value="9">Hosp Based Medicare Approved Swing Bed</option>
+                    <option value="10">Hospice - Home</option>
+                    <option value="11">Hospice - Medical Facility</option>
+                    <option value="12">Inpatient Rehabilitation Facility</option>
+                    <option value="13">Left Against Medical Advice</option>
+                    <option value="14">Medicaid Cert Nursing Facility</option>
+                    <option value="15">Medicare Cert Long Term Care Hospital</option>
+                    <option value="16">Psychiatric Hospital or Unit of Hosp</option>
+                    <option value="17">Short-term Hospital</option>
+                    <option value="18">Skilled Nursing Home</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="ccsd">CCS Diagnosis Code</label>
+                <input type="number" class="form-control" name="ccsd" aria-describedby="ccsd" placeholder="Enter CCS Diagnosis Code">
+            </div>
+
+            <div class="form-group">
+                <label for="ccsp">CCS Procedure Code</label>
+                <input type="number" class="form-control" name="ccsp" aria-describedby="ccsp" placeholder="Enter CCS Procedure Code">
+            </div>
+
+            <div class="form-group">
+                <label for="aprd">APR DRG Code</label>
+                <input type="number" class="form-control" name="aprd" aria-describedby="aprd" placeholder="Enter APR DRG Code">
+            </div>
+
+            <div>
+                <label class="my-1 mr-2" for="aprs">APR Severity of Illness Code</label>
+                <select class="custom-select my-1 mr-sm-2" name="aprs" placeholder="Choose APR Severity of Illness Code">
+                    <option selected disabled>Choose APR Severity of Illness Code</option>
+                    <option value="0">1</option>
+                    <option value="1">2</option>
+                    <option value="2">3</option>
+                    <option value="3">4</option>
+                    <option value="4">5</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="my-1 mr-2" for="pt">Payment Typology</label>
+                <select class="custom-select my-1 mr-sm-2" name="pt" placeholder="Choose Payment Typology">
+                    <option selected disabled>Choose Payment Typology</option>
+                    <option value="0">Blue Cross/Blue Shield</option>
+                    <option value="1">Department of Corrections</option>
+                    <option value="2">Federal/State/Local/VA</option>
+                    <option value="3">Managed Care, Unspecified</option>
+                    <option value="4">Medicaid</option>
+                    <option value="5">Medicare</option>    
+                    <option value="7">Private Health Insurance</option>
+                    <option value="8">Self-Pay</option>
+                    <option value="6">Miscellaneous/Other</option>
+                    <option value="9">Unknown</option>
+                </select>
+            </div>
+            
+            <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+            <br>
+            <br>
+            <b>{{ prediction_text }}</b>
+            <br>
+            <br>
+            <br>
+            <br>
+        </form>
+    </div>
+</body>
+
+</html>
