@@ -23,7 +23,7 @@ To continue, click the **Try Now** button.
 
 ##### **Form Display** #####
 ![form](img/form.JPG)
-Fill all the fields, then click Submit.
+Fill in all the fields, then click Submit.
 
 ##### **Prediction Result** #####
 ![prediction](img/prediction.JPG)<br>
