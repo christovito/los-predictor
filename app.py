@@ -1,6 +1,7 @@
 import numpy as np
 from flask import Flask, request, jsonify, render_template
 import pickle
+from sklearn.preprocessing import StandardScaler
 
 app = Flask(__name__)
 model = pickle.load(open('model/model.pkl', 'rb'))
@@ -17,6 +18,9 @@ def form():
 def predict():
     int_features = [int(x) for x in request.form.values()]
     final_features = [np.array(int_features)]
+    scaler = StandardScaler()
+    scaler.fit(final_features)
+    final_features = scaler.transform(final_features)
     prediction = model.predict(final_features)
 
     output = prediction[0]
