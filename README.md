@@ -27,4 +27,4 @@ Fill in all the fields, then click Submit.
 
 ##### **Prediction Result** #####
 ![prediction](img/prediction.JPG)<br>
-After submitting the form, you will see the prediction result under the Submit button. It says the patient will have either a longer or longer stays.
+After submitting the form, you will see the prediction result under the Submit button. It says that the patient will have either a longer or shorter stays.
